@@ -57,10 +57,3 @@ export const RestrictedCharacterInput = React.createClass({
 				/>
 	}
 })
-
-export const PositiveIntegerInput = (props) => (
-	<RestrictedCharacterInput
-		regex={/\D/g}
-		{...props}
-	/>
-)

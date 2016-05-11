@@ -2,6 +2,7 @@
   "name": "react-restricted-character-input",
   "version": "1.0.0",
   "description": "Restrict text inputs to only accept certain characters.",
+  "repository": "https://github.com/ericbiewener/react-restricted-character-input"
   "peerDependencies": {
     "react": "^0.14 || ^15.0.0-rc || ^15.0"
   }
