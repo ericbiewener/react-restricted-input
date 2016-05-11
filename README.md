@@ -10,7 +10,7 @@ While preventing illegal characters from being entered into a text input is trad
 ## Use
 The following example creates a reusable component that only allows positive integers to be entered.
 
-```
+```js
 import RestrictedCharacterInput from 'react-restricted-character-input'
 
 export const PositiveIntegerInput = () => (
