@@ -1,8 +1,24 @@
 {
-  "name": "react-restricted-character-input",
+  "name": "react-restricted-input",
   "version": "1.0.0",
   "description": "Restrict text inputs to only accept certain characters.",
-  "repository": "https://github.com/ericbiewener/react-restricted-character-input",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ericbiewener/react-restricted-input"
+  },
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "input",
+    "form",
+    "validation"
+  ],
+  "files": [
+    "dist",
+    "lib",
+    "src"
+  ],
+  "main": "lib/index.js",
   "peerDependencies": {
     "react": "^0.14 || ^15.0.0-rc || ^15.0"
   },
@@ -14,8 +30,13 @@
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
+    "event-stream": "^3.3.2",
+    "glob": "^7.0.3",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3",
     "react": "^15.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",

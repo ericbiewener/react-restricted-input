@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export const RestrictedCharacterInput = React.createClass({
+export const RestrictedInput = React.createClass({
 	onChange: function(e) {
 		let {onChange} = this.props,
 		    value = e.target.value

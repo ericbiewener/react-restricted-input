@@ -1,4 +1,4 @@
-# React Restricted Character Input
+# React Restricted Input
 Use any regex you want to restrict the characters that can be entered into an text input.
 
 ## Why do I need this?
@@ -11,11 +11,9 @@ While preventing illegal characters from being entered into a text input is trad
 The following example creates a reusable component that only allows positive integers to be entered.
 
 ```
-import RestrictedCharacterInput from 'react-restricted-character-input'
+import RestrictedInput from 'react-restricted-input'
 
 export const PositiveIntegerInput = () => (
-    <RestrictedCharacterInput
-        regex={/\D/g}
-    />
+    <RestrictedInput regex={/\D/g} />
 )
 ```
