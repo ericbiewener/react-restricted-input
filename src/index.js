@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export const RestrictedInput = React.createClass({
+const RestrictedInput = React.createClass({
 	onChange: function(e) {
 		let {onChange} = this.props,
 		    value = e.target.value
@@ -34,26 +34,27 @@ export const RestrictedInput = React.createClass({
 		}
 	},
 
-	cacheSelection: function() {
+	onKeyDown: function(e) {
 		// Cache selection on keydown since it will have changed by the time onChange is called
 		this.cachedSelection = {
 			start: this.el.selectionStart,
 			end: this.el.selectionEnd
 		}
+
+		if (this.props.onKeyDown) this.props.onKeyDown(e)
 	},
 
 	render: function() {
-		let {value, onFocus, onBlur, className} = this.props
+		let {onChange, onKeyDown, ...rest} = this.props
 
 		return <input 
 					type='text'
-					className= {className}
-					value={value !== undefined ? value : ''} 
 					onChange={this.onChange} 
-					onFocus={onFocus}
-					onBlur={onBlur}
-					onKeyDown={this.cacheSelection}
+					onKeyDown={this.onKeyDown}
 					ref={el => this.el = el}
+					{...rest}
 				/>
 	}
 })
+
+export default RestrictedInput

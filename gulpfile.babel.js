@@ -16,6 +16,8 @@ const paths = {
 	entryGlob: './src/**/*.js',
 	dist: './dist/',
 	lib: './lib/',
+	entryExamples: './examples/dev.js',
+	examples: './examples/',
 	bundleName: 'react-restricted-input',
 	browserifyImportRoot: './'
 }
@@ -39,6 +41,8 @@ function emitJsError(error) {
 	)
 }
 
+// BABEL COMPILED
+
 function lib() {
 	gulp.src(paths.entryGlob)
 		.pipe(babel({
@@ -52,10 +56,32 @@ function libWatch() {
 	gulp.watch(paths.entryGlob, lib)
 	lib()
 }
+
+// COMPILED, CONCATENATED, MINIFIED
+
+function browserifyCreate(entry, bundle, ignoreReact=true) {
+	const b = browserify({
+		cache: {},
+		packageCache: {},
+		entries: entry,
+		plugin: [watchify],
+	})
+	.transform(babelify, {
+		presets: ['es2015', 'react'],
+		plugins: ['transform-object-rest-spread']
+	})
+
+	if (ignoreReact) b.ignore('react')
+
+	b.on('update', bundle)
+	b.on('log', console.log)
+
+	return b
+}
  
 function dist() {
 	function bundle() {
-		Browserify.bundle()
+		b.bundle()
 			.on('error', emitJsError)
 			.pipe(source(`${paths.bundleName}.js`))
 			.pipe(buffer())
@@ -65,27 +91,26 @@ function dist() {
 			.pipe(gulp.dest(paths.dist))
 	}
 
-	const Browserify = browserify({
-		cache: {},
-		packageCache: {},
-		entries: paths.entry,
-		plugin: [watchify],
-		paths: ['./node_modules', paths.browserifyImportRoot]
-	})
-	.ignore('react')
-	.transform(babelify, {
-		presets: ['es2015', 'react'],
-		plugins: ['transform-object-rest-spread']
-	})
-
-	Browserify.on('update', bundle)
-	Browserify.on('log', console.log)
-
+	let b = browserifyCreate(paths.entry, bundle)
 	bundle()
 }
 
+// EXAMPLES
+
+function examples() {
+	function bundle() {
+		b.bundle()
+			.on('error', emitJsError)
+			.pipe(source('bundle.js'))
+			.pipe(gulp.dest(paths.examples))
+	}
+
+	let b = browserifyCreate(paths.entryExamples, bundle, false)
+	bundle()
+}
 
 gulp.task('lib', lib)
 gulp.task('libWatch', libWatch)
 gulp.task('dist', dist)
-gulp.task('default', ['libWatch', 'dist'])
+gulp.task('examples', examples)
+gulp.task('default', ['libWatch', 'dist', 'examples'])

@@ -11,9 +11,24 @@ While preventing illegal characters from being entered into a text input is trad
 The following example creates a reusable component that only allows positive integers to be entered.
 
 ```js
-import RestrictedCharacterInput from 'react-restricted-character-input'
+import RestrictedInput from '../src/index.js'
 
-export const PositiveIntegerInput = () => (
-    <RestrictedInput regex={/\D/g} />
-)
+const MyStatefulComponent = React.createClass({
+    getInitialState: function() {
+        return { inputValue: '' }
+    },
+
+    onChange: function(e) {
+        this.setState({ inputValue: e.target.value })
+    },
+
+    render: function() {
+        return  <RestrictedInput 
+                    regex={/\D/g}
+                    value={this.state.inputValue}
+                    onChange={this.onChange}
+                    placeholder='Positive integers only'
+                />
+    }
+})
 ```
