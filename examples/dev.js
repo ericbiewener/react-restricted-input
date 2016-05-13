@@ -2,6 +2,13 @@ import React from 'react'
 import {render} from 'react-dom'
 import RestrictedInput from '../src/index.js'
 
+const PositiveIntegerInput = props => (
+	<RestrictedInput 
+		illegal={/\s/g}
+		{...props}
+	/>
+)
+
 const MyStatefulComponent = React.createClass({
 	getInitialState: function() {
 		return { inputValue: '' }
@@ -12,8 +19,7 @@ const MyStatefulComponent = React.createClass({
 	},
 
 	render: function() {
-		return 	<RestrictedInput 
-					regex={/\D/g}
+		return 	<PositiveIntegerInput 
 					value={this.state.inputValue}
 					onChange={this.onChange}
 					placeholder='Positive integers only'

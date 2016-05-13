@@ -6,7 +6,7 @@ const RestrictedInput = React.createClass({
 		let {onChange} = this.props,
 		    value = e.target.value
 		    
-		if (value.search(this.props.regex) === -1) {
+		if (value.search(this.props.illegal) === -1) {
 			this.props.onChange(e, value)
 		}
 		else {

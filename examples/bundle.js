@@ -1,6 +1,8 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -12,6 +14,12 @@ var _index = require('../src/index.js');
 var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var PositiveIntegerInput = function PositiveIntegerInput(props) {
+	return _react2.default.createElement(_index2.default, _extends({
+		illegal: /\s/g
+	}, props));
+};
 
 var MyStatefulComponent = _react2.default.createClass({
 	displayName: 'MyStatefulComponent',
@@ -25,8 +33,7 @@ var MyStatefulComponent = _react2.default.createClass({
 	},
 
 	render: function render() {
-		return _react2.default.createElement(_index2.default, {
-			regex: /\D/g,
+		return _react2.default.createElement(PositiveIntegerInput, {
 			value: this.state.inputValue,
 			onChange: this.onChange,
 			placeholder: 'Positive integers only'
@@ -19553,7 +19560,7 @@ var RestrictedInput = _react2.default.createClass({
 		var onChange = this.props.onChange;
 		var value = e.target.value;
 
-		if (value.search(this.props.regex) === -1) {
+		if (value.search(this.props.illegal) === -1) {
 			this.props.onChange(e, value);
 		} else {
 			// Yes, this is a hack. But it's where the magic happens.
