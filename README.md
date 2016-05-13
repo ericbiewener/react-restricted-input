@@ -8,7 +8,7 @@ While preventing illegal characters from being entered into a text input is trad
 2. Temporarily hides the carat to make #1 invisible to the user. Without hiding the carat, the user would see it jump to the end and then back. Hiding the carat is achieved by temporarily setting the text color to transparent. This causes the text in the input field to briefly flicker, but one could argue that this is actually good UX because it indicates to the user that their keypress was indeed registered. An alternative approach to hiding the carat could be to briefly clone and hide the element, thus eliminating the text flicker. But this package doesn't do that :)
 
 ## Use
-The following example creates a reusable component that only allows positive integers to be entered. See the `examples` folder for a demo.
+The following example creates a reusable component that only allows positive integers to be entered. See the `examples` folder for a working demo.
 
 ```js
 import RestrictedInput from 'react-restricted-input'
