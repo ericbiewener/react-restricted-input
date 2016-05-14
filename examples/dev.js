@@ -4,7 +4,7 @@ import RestrictedInput from '../src/index.js'
 
 const PositiveIntegerInput = props => (
 	<RestrictedInput 
-		illegal={/\s/g}
+		illegal={/\D/g}
 		{...props}
 	/>
 )

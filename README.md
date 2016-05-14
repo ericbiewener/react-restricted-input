@@ -15,7 +15,7 @@ import RestrictedInput from 'react-restricted-input'
 
 const PositiveIntegerInput = props => (
     <RestrictedInput 
-        illegal={/\s/g}
+        illegal={/\D/g}
         {...props}
     />
 )
